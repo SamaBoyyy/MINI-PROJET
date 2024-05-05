@@ -20,10 +20,12 @@ grille * Grille_allouer ( unsigned n, unsigned m);
 
 void Grille_vider ( grille *g );
 
-void Grillage_tirage_fruit ( grille *g );
+void Grille_tirage_fruit ( grille *g );
 
 void Grille_remplir ( grille *g );
 
-void desallouer ( grille *g );
+void Grille_desallouer ( grille *g );
+
+void Grille_redessiner( grille *g);
 
 #endif // GRILLE_H

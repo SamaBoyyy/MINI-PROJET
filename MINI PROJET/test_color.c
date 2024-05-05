@@ -37,7 +37,7 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
 }
 
 
-void Grille_vide (grille *g ){
+void Grille_vider (grille *g ){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
             *(*(g->tab + i) +j) ="\33[41m 1\33[00m"; //met la valeur une couleur verte puis l'arrete avec une couleur noir
