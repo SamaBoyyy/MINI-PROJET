@@ -1,4 +1,4 @@
-# Option du compilateur
+ # Option du compilateur
 CFLAGS=-Wall -std=c99 -Wfatal-errors
 
 OBJETS= grille.o main.o

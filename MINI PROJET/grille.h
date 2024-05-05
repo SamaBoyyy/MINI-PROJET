@@ -1,9 +1,6 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
-#include <stdio.h>
-#include <stdlib.h>
-
 typedef struct coord_s {
     unsigned x;
     unsigned y;
@@ -28,4 +25,4 @@ void Grille_desallouer ( grille *g );
 
 void Grille_redessiner( grille *g);
 
-#endif // GRILLE_H
+#endif 

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ncurses.h>
+#include <string.h>
+#include <time.h>
 #include "grille.h"
 
 grille * Grille_allouer ( unsigned n, unsigned m ){
@@ -28,7 +30,7 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
 void Grille_vider (grille *g ){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
-            *(*(g->tab + i) +j) ="\33[41m 1\33[00m"; //met la valeur une couleur verte puis l'arrete avec une couleur noir
+            strcpy((*(g->tab + i) +j), "\33[41m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
         }
     }
     
@@ -43,14 +45,14 @@ void Grille_tirage_fruit(grille *g){
 
 
 void Grille_remplir(grille *g){
-    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[00m  ";
+    strcpy((*(g->tab + (g->fruit.x)) + (g->fruit.y)), "\33[00m  ");
 }
 
 void Grille_desallouer(grille *g){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
             *(*(g->tab + i) +j)= NULL ;
-            free(*(*(g->tab + i) +j));
+            free((*(g->tab + i) +j));
         }
     }
     
@@ -65,7 +67,7 @@ void Grille_redessiner(grille *g){
             if(j == 0 || i == 0 || j == g->m-1 || i == g->n-1) 
                 printf("\33[42m 2\33[00m");
             else
-                printf("%s", *(*(g->tab + i) + j));
+                printf("%s", *(*(g->tab + i) + j)); 
         }
         printf("\n");
     }
