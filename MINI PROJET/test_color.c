@@ -71,9 +71,21 @@ void Grille_desalouer(grille *g){
     
 }
 
+void Grille_redessiner(grille *g){
+    for ( int i = 0 ; i < g->n ; i++ ){
+        for ( int j = 0 ; j < g->m ; j++ ){
+            if(j == 0 || i == 0 || j == g->m-1 || i == g->n-1) 
+                printf("\33[42m 2\33[00m");
+            else
+                printf("%s", *(*(g->tab + i) + j));
+        }
+        printf("\n");
+    }
+}
+
 int main(int argc, char const *argv[])
 {
-    grille *g = Grille_allouer(10,12);
+    grille *g = Grille_allouer(20,20);
     if (g == NULL)
     {
         printf("\33[91mMEMOIRE INSUFISANTE\n");
@@ -82,12 +94,13 @@ int main(int argc, char const *argv[])
     Grille_vide(g);
     Grille_tirage_fruit(g);
     Grille_remplir(g);
-    for ( int i = 0 ; i < g->n  ; i++ ){ //affichage
-        for( int j = 0 ; j < g->m ; j++ ){
-            printf("%s", *(*(g->tab + i) +j));
-        }
-        printf("\n");
-    }
+    //for ( int i = 0 ; i < g->n  ; i++ ){ //affichage
+    //    for( int j = 0 ; j < g->m ; j++ ){
+    //        printf("%s", *(*(g->tab + i) +j));
+    //    }
+    //    printf("\n");
+    //}
+    Grille_redessiner(g);
     printf("%d\n",g->n);
     Grille_desalouer(g);
     printf("%d\n",g->n);
