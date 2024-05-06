@@ -8,7 +8,7 @@
 grille * Grille_allouer ( unsigned n, unsigned m ){
     int i ;
     grille *g= malloc(sizeof(grille));  //allocation memoire pour le type grille (reserve d'un espace de taille type grille)
-    if (g == NULL) return NULL;         // Verifie si allorcation memoire a ete possible sinon on renvoie le pointeur NULL
+    if (g == NULL)  return NULL;     // Verifie si allorcation memoire a ete possible sinon on renvoie le pointeur NULL
     (g->m) = m;
     (g->n) = n;
     (g->tab) = malloc(n * sizeof(char *));  //alocation memoire de la premiere collonne de taille type pointeur char
@@ -23,6 +23,7 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
             if (*(*(g->tab + i)+j) == NULL) return NULL;    // Verifie si allorcation memoire a ete possible sinon on renvoie le pointeur NULL
         }
     }
+    
     return g;
 }
 
@@ -30,11 +31,12 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
 void Grille_vider (grille *g ){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
-            strcpy((*(g->tab + i) +j), "\33[41m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
+            strcpy((*(*(g->tab + i) + j)), "\33[41m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
         }
     }
-    
+   
 }
+
 
 void Grille_tirage_fruit(grille *g){
     srand(time(NULL));
@@ -45,14 +47,14 @@ void Grille_tirage_fruit(grille *g){
 
 
 void Grille_remplir(grille *g){
-    strcpy((*(g->tab + (g->fruit.x)) + (g->fruit.y)), "\33[00m  ");
+    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[00m  ";
 }
 
-void Grille_desallouer(grille *g){
+void Grille_desalouer(grille *g){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
             *(*(g->tab + i) +j)= NULL ;
-            free((*(g->tab + i) +j));
+            free(*(*(g->tab + i) +j));
         }
     }
     
@@ -62,12 +64,9 @@ void Grille_desallouer(grille *g){
 }
 
 void Grille_redessiner(grille *g){
-    for ( int i = 0 ; i < g->n ; i++ ){
-        for ( int j = 0 ; j < g->m ; j++ ){
-            if(j == 0 || i == 0 || j == g->m-1 || i == g->n-1) 
-                printf("\33[42m 2\33[00m");
-            else
-                printf("%s", *(*(g->tab + i) + j)); 
+    for ( int i = 0 ; i < g->n  ; i++ ){ //affichage
+        for( int j = 0 ; j < g->m ; j++ ){
+            printf("%s", *(*(g->tab + i) +j));
         }
         printf("\n");
     }

@@ -5,13 +5,13 @@ OBJETS= grille.o main.o
 PROG=programme
 
 all: $(OBJETS)
-	gcc $(OBJETS) -o $(PROG)
+	gcc $(CFLAGS) $(OBJETS) -o $(PROG) -lncurses
 
 grille.o: grille.c grille.h
-	gcc -c $(CFLAGS) grille.c
+	gcc -c $(CFLAGS) grille.c -lncurses
 
 main.o: main.c grille.h
-	gcc -c $(CFLAGS) main.c
+	gcc -c $(CFLAGS) main.c -lncurses
 
 clean:
 	rm $(PROG) $(OBJETS)

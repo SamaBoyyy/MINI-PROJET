@@ -9,7 +9,7 @@ typedef struct coord_s {
 typedef struct grille_s {
     unsigned n;
     unsigned m;
-    char **tab;
+    char * **tab;
     coord fruit;
 } grille;
 
@@ -21,7 +21,7 @@ void Grille_tirage_fruit ( grille *g );
 
 void Grille_remplir ( grille *g );
 
-void Grille_desallouer ( grille *g );
+void Grille_desalouer( grille *g );
 
 void Grille_redessiner( grille *g);
 
