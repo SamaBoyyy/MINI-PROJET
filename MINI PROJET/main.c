@@ -6,7 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-    grille *g = Grille_allouer(10,12);
+    grille *g = Grille_allouer(24,26);
     if (g == NULL)
     {
         printf("\33[91mMEMOIRE INSUFISANTE\n");
@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
     Grille_remplir(g);
     Grille_redessiner(g);
     printf("%d\n",g->n);
-    Grille_desalouer(g);
+    Grille_desallouer(g);
     printf("%d\n",g->n);
     return EXIT_SUCCESS;
 }
