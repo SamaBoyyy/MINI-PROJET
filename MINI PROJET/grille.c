@@ -40,8 +40,10 @@ void Grille_vider (grille *g ){
 
 void Grille_tirage_fruit(grille *g){
     srand(time(NULL));
-    g->fruit.x=rand()%(g->n);
-    g->fruit.y=rand()%(g->m);
+    do{
+        g->fruit.x=rand()%(g->n);
+        g->fruit.y=rand()%(g->m);
+    } while (g->fruit.x == 0 || g->fruit.x == g->n-1 || g->fruit.y == 0 || g->fruit.y == g->m-1);
     printf("g->fruit.x= %d || g->fruit.y= %d \n",g->fruit.x,g->fruit.y);
 }
 
@@ -50,7 +52,7 @@ void Grille_remplir(grille *g){
     *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[00m  ";
 }
 
-void Grille_desalouer(grille *g){
+void Grille_desallouer(grille *g){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
             *(*(g->tab + i) +j)= NULL ;
@@ -63,10 +65,22 @@ void Grille_desalouer(grille *g){
     
 }
 
+//void Grille_redessiner(grille *g){
+//    for ( int i = 0 ; i < g->n  ; i++ ){ //affichage
+//        for( int j = 0 ; j < g->m ; j++ ){
+//            printf("%s", *(*(g->tab + i) +j));
+//        }
+//        printf("\n");
+//    }
+//}
+
 void Grille_redessiner(grille *g){
-    for ( int i = 0 ; i < g->n  ; i++ ){ //affichage
-        for( int j = 0 ; j < g->m ; j++ ){
-            printf("%s", *(*(g->tab + i) +j));
+    for ( int i = 0 ; i < g->n ; i++ ){
+        for ( int j = 0 ; j < g->m ; j++ ){
+            if(j == 0 || i == 0 || j == g->m-1 || i == g->n-1) 
+                printf("\33[42m 2\33[00m");
+            else
+                printf("%s", *(*(g->tab + i) + j));
         }
         printf("\n");
     }
