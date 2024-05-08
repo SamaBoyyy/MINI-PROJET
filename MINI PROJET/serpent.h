@@ -6,7 +6,9 @@
 struct serpent_s{
     unsigned x;
     unsigned y;
-    liste_section l_serpent;
+    liste_section *l_serpent;
 };
+
+struct serpent_s * creer_serpent();
 
 #endif
