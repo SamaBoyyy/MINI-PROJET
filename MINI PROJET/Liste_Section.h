@@ -2,13 +2,13 @@
 #define _LISTE_INT_H
 #define item int
 
-typedef struct section_s {
+typedef struct section_s {   //Maillon
   item  taille; /* Taille de la section */
   char *couleur; /* Couleur section */
   Section *suivant; /* adresse du maillon suivant */
 }Section;
 
-typedef struct liste_section_s {
+typedef struct liste_section_s { // Liste de maillon
   Section *premier; /* adresse du premier maillon de la liste, NULL si la liste est vide */
   Section *dernier; /* adresse du dernier maillon de la liste NULL si la liste est vide */
   int longueur; /* nombre de maillons dans la liste */
