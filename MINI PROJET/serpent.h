@@ -7,6 +7,6 @@ struct serpent_s{
     unsigned x;
     unsigned y;
     liste_section l_serpent;
-}
+};
 
 #endif
