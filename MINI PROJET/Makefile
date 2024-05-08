@@ -1,11 +1,14 @@
- # Option du compilateur
+# Option du compilateur
 CFLAGS=-Wall -std=c99 -Wfatal-errors
 
-OBJETS= grille.o main.o
+OBJETS= serpent.o grille.o main.o
 PROG=programme
 
 all: $(OBJETS)
 	gcc $(CFLAGS) $(OBJETS) -o $(PROG) -lncurses
+
+serpent.o: serpent.c serpent.h
+	gcc -c $(CFLAGS) serpent.c -lncurses
 
 grille.o: grille.c grille.h
 	gcc -c $(CFLAGS) grille.c -lncurses
