@@ -2,13 +2,13 @@
 #define SERPENT_H
 #include "Liste_Section.h"
 
-
-struct serpent_s{
+typedef struct serpent_s{
     unsigned x;
     unsigned y;
     liste_section *l_serpent;
-};
+}serpent;
 
-struct serpent_s * creer_serpent();
+serpent * creer_serpent();
+void serpent_desallouer(serpent * s);
 
 #endif
