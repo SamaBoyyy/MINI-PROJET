@@ -13,7 +13,7 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
     (g->n) = n;
     (g->tab) = malloc(n * sizeof(char *));  //alocation memoire de la premiere collonne de taille type pointeur char
     if (g->tab == NULL) return NULL;        // Verifie si allorcation memoire a ete possible sinon on renvoie le pointeur NULL
-    for( i = 0 ; i < m ; i++ ){
+    for( i = 0 ; i < n ; i++ ){
         g->tab[i] = calloc(m, sizeof(char * )); //alocation memoire des n ligne de taille m fois type pointeur char
         if (g->tab[i] == NULL) return NULL;     // Verifie si allorcation memoire a ete possible sinon on renvoie le pointeur NULL
     }
@@ -31,14 +31,13 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
 void Grille_vider (grille *g ){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
-            strcpy((*(*(g->tab + i) + j)), "\33[00m  \33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
+            strcpy((*(*(g->tab + i) + j)), "\33[41m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
         }
-    }
-   
+    }  
 }
 
 
-void Grille_tirage_fruit(grille *g){
+voidserpent_tirage_fruit(grille *g){
     srand(time(NULL));
     do{
         g->fruit.x=rand()%(g->n);
@@ -48,8 +47,9 @@ void Grille_tirage_fruit(grille *g){
 }
 
 
-void Grille_remplir(grille *g){
-    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[41m  ";
+void Grille_remplir( grille *g, serpent *s ){
+    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[00m  ";
+    *(*(g->tab + (s->x)) + (s->y)) = s->l_serpent->premier->couleur;
 }
 
 void Grille_desallouer(grille *g){
@@ -77,14 +77,8 @@ void Grille_desallouer(grille *g){
 void Grille_redessiner(grille *g){
     for ( int i = 0 ; i < g->n ; i++ ){
         for ( int j = 0 ; j < g->m ; j++ ){
-            if(j == g->m-1 && (i >0 && i <g->n-1))  
-                printf("\x1b[2;42;97m+#\33[00m");
-            else if (j == 0 && (i >0 && i <g->n-1) ){
-                printf("\x1b[2;42;97m#+\33[00m");
-            }
-            else if (i == 0 || i == g->n-1 ){
-                printf("\x1b[2;42;97m==\33[00m");
-            }
+            if(j == 0 || i == 0 || j == g->m-1 || i == g->n-1) 
+                printf("\33[42m 2\33[00m");
             else
                 printf("%s", *(*(g->tab + i) + j));
         }

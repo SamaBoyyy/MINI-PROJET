@@ -1,6 +1,8 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
+#include "serpent.h"
+
 typedef struct coord_s {
     unsigned x;
     unsigned y;
@@ -13,16 +15,17 @@ typedef struct grille_s {
     coord fruit;
 } grille;
 
-grille * Grille_allouer ( unsigned n, unsigned m);
+grille * Grille_allouer( unsigned n, unsigned m);
 
-void Grille_vider ( grille *g );
+void Grille_vider( grille *g );
 
-void Grille_tirage_fruit ( grille *g );
+void Grille_tirage_fruit( grille *g );
 
-void Grille_remplir ( grille *g );
+void Grille_remplir( grille *g, serpent *s );
 
 void Grille_desallouer( grille *g );
 
 void Grille_redessiner( grille *g);
+
 
 #endif 
