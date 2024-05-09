@@ -8,6 +8,7 @@
 Section *nouvelle_Section (int taille) {
   Section *m = malloc(sizeof(Section));
   m->taille = taille;
+  m->couleur = malloc(sizeof(char));
   m->couleur = NULL;
   m->suivant = NULL;
   return m;
@@ -16,6 +17,7 @@ Section *nouvelle_Section (int taille) {
 /* Libère l'espace mémoire occupé sur le tas par le maillon d'adresse m */
 void detruire_Section (Section **m) {
   if (*m != NULL) {
+    if( (*m)->couleur != NULL ) free((*m)->couleur);
     free(*m);
     *m = NULL;
   }
@@ -24,7 +26,7 @@ void detruire_Section (Section **m) {
 /* Alloue sur le tas de la mémoire pour une liste, */
 /* initialise cette liste à la liste vide */
 /* et renvoie l'adresse de la liste allouée */
-liste_section *nouvelle_liste_int() {
+liste_section *nouvelle_liste_section() {
   liste_section *l = malloc(sizeof(liste_section));
   l->premier = NULL;
   l->dernier = NULL;
@@ -34,12 +36,12 @@ liste_section *nouvelle_liste_int() {
 
 /** Teste si la liste est vide */
 /* renvoie un entier ≠ 0 si la liste d'adresse l est vide, 0 sinon */
-int est_vide_liste_int(const liste_section *l) {
+int est_vide_liste_section(const liste_section *l) {
   return (l->premier == NULL);
 }
 
 /** Renvoie le nombre de maillons dans la liste d'adresse l */
-int longueur_liste_int(const liste_section *l) {
+int longueur_liste_section(const liste_section *l) {
   return l->longueur;
 }
 
@@ -54,8 +56,8 @@ void afficher_liste_couleur(const liste_section *l) {
 }
 
 /* Insère le maillon d'adresse m au début de la liste d'adresse l */
-void ajouter_maillon_debut_liste_int(liste_section *l, Section *m) {
-  if (est_vide_liste_int(l)) {  l->dernier = m; }
+void ajouter_maillon_debut_liste_section(liste_section *l, Section *m) {
+  if (est_vide_liste_section(l)) {  l->dernier = m; }
   m->suivant = l->premier;
   l->premier = m;
   ++l->longueur;
@@ -63,9 +65,9 @@ void ajouter_maillon_debut_liste_int(liste_section *l, Section *m) {
 
 
 /* Insère le maillon d'adresse m à la fin de la liste d'adresse l */
-void ajouter_maillon_fin_liste_int(liste_section *l, Section *m) {
+void ajouter_section_fin_liste_section(liste_section *l, Section *m) {
   m->suivant = NULL;
-  if (est_vide_liste_int(l)) {
+  if (est_vide_liste_section(l)) {
     l->premier = m;
   }
   else {
@@ -78,12 +80,12 @@ void ajouter_maillon_fin_liste_int(liste_section *l, Section *m) {
 /** Extrait le premier maillon de la liste d'adresse l */
 /* et renvoie l'adresse du maillon extrait */
 /** Renvoie NULL si la liste est vide */
-Section *extraire_maillon_debut_liste_int(liste_section *l) {
+Section *extraire_maillon_debut_liste_section(liste_section *l) {
   Section *m = l->premier;
   if (m != NULL) {
     l->premier = m->suivant;
     --l->longueur;
-    if (est_vide_liste_int(l)) { l->dernier = NULL; }
+    if (est_vide_liste_section(l)) { l->dernier = NULL; }
     m->suivant = NULL;
   }
   return m;
@@ -92,7 +94,7 @@ Section *extraire_maillon_debut_liste_int(liste_section *l) {
 /** Extrait le dernier maillon de la liste d'adresse l */
 /* et renvoie l'adresse du maillon extrait */
 /* Renvoie NULL si la liste est vide */
-Section *extraire_maillon_fin_liste_int(liste_section *l) {
+Section *extraire_maillon_fin_liste_section(liste_section *l) {
   Section *m = l->premier, *res;
   if (m == NULL) {  return m; }
   --l->longueur;
@@ -111,10 +113,10 @@ Section *extraire_maillon_fin_liste_int(liste_section *l) {
 }
 
 /** Libère l'espace mémoire occupé sur le tas par la liste et tous ses maillons */
-void detruire_liste_int (liste_section **l) {
+void detruire_liste_section(liste_section **l) {
   if (*l != NULL) {
-    while (!est_vide_liste_int(*l)) {
-      Section *m = extraire_maillon_debut_liste_int(*l);
+    while (!est_vide_liste_section(*l)) {
+      Section *m = extraire_maillon_debut_liste_section(*l);
       detruire_Section(&m);
     }
     free(*l);

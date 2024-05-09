@@ -1,12 +1,13 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "grille.h"
-#include <ncurses.h>
-#include <time.h>
+#include "serpent.h"
+#include "Liste_Section.h"
 
-int main(int argc, char const *argv[])
-{
-    grille *g = Grille_allouer(24,26);
+int main(){
+
+    serpent * s = creer_serpent();
+    grille * g = Grille_allouer(20,20);
     if (g == NULL)
     {
         printf("\33[91mMEMOIRE INSUFISANTE\n");
@@ -14,10 +15,16 @@ int main(int argc, char const *argv[])
     }
     Grille_vider(g);
     Grille_tirage_fruit(g);
-    Grille_remplir(g);
+    Grille_remplir(g,s);
     Grille_redessiner(g);
     printf("%d\n",g->n);
+    printf("%d\n",g->m);
     Grille_desallouer(g);
-    printf("%d\n",g->n);
+    //detruire_liste_section(s->l_serpent);
+    if( s !=  NULL){
+        if (s->l_serpent != NULL ) free(s->l_serpent);
+        free(s);
+    }
+    //serpent_desallouer(s);
     return EXIT_SUCCESS;
 }

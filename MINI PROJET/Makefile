@@ -16,7 +16,7 @@ Liste_Section.o: Liste_Section.c Liste_Section.h
 serpent.o: serpent.c serpent.h Liste_Section.h
 	gcc -c $(CFLAGS) serpent.c -lncurses
 
-main.o: main.c grille.h serpent.h
+main.o: main.c grille.h serpent.h Liste_Section.h
 	gcc -c $(CFLAGS) main.c -lncurses
 
 clean:

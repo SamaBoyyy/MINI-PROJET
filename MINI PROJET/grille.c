@@ -37,7 +37,7 @@ void Grille_vider (grille *g ){
 }
 
 
-voidserpent_tirage_fruit(grille *g){
+void Grille_tirage_fruit(grille *g){
     srand(time(NULL));
     do{
         g->fruit.x=rand()%(g->n);
