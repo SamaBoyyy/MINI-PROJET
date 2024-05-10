@@ -9,6 +9,6 @@ typedef struct serpent_s{
 }serpent;
 
 serpent * creer_serpent();
-//void serpent_desallouer(serpent *s);
+void serpent_desallouer(serpent *s);
 
 #endif

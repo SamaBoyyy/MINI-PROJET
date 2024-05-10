@@ -31,14 +31,13 @@ serpent * creer_serpent(){
     return s;
 }
 
-//void serpent_desallouer(serpent *s){
-//    if( s != NULL ){
-//        if( s->l_serpent != NULL )
-//            detruire_liste_section( s->l_serpent );
-//        free(s->l_serpent);
-//        s->l_serpent = NULL;
-//        free(s);
-//        s = NULL;
-//    }
-//
-//}
+void serpent_desallouer(serpent *s){
+    if( s != NULL ){
+        if( s->l_serpent != NULL )
+        detruire_liste_section( &(s->l_serpent) );
+        free(s->l_serpent);
+        s->l_serpent = NULL;          
+        free(s);
+        
+    }
+}

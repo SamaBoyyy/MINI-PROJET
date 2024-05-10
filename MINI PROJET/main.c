@@ -6,9 +6,9 @@
 #include <ncurses.h>
 
 int main(){
-    printf("hellol");
+    printf("hello\n");
     serpent * s = creer_serpent();
-    printf("%s",s->l_serpent->premier->couleur);
+    printf("%s\n",s->l_serpent->premier->couleur);
     grille * g = Grille_allouer(20,20);
     if (g == NULL)
     {
@@ -20,13 +20,15 @@ int main(){
     Grille_remplir(g,s);
     Grille_redessiner(g);
     printf("%d\n",g->n);
-    printf("%d\n",g->m);
     Grille_desallouer(g);
+    printf("%d\n",g->n);
     //detruire_liste_section(s->l_serpent);
     /*if( s !=  NULL){
         if (s->l_serpent != NULL ) free(s->l_serpent);
         free(s);
     }*/
-    //serpent_desallouer(s);
+    printf("%d\n",s->x);
+    serpent_desallouer(s);
+    printf("%d\n",s->x);
     return EXIT_SUCCESS;
 }
