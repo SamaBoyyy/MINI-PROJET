@@ -31,7 +31,17 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
 void Grille_vider (grille *g ){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
-            strcpy((*(*(g->tab + i) + j)), "\33[41m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
+            if(j == g->m-1 && (i >0 && i <g->n-1))  
+                strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m+#\33[00m");
+            else if (j == 0 && (i >0 && i <g->n-1) ){
+                strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m#+\33[00m");
+            }
+            else if (i == 0 || i == g->n-1 ){
+                strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m==\33[00m");
+            }
+            else {
+            strcpy((*(*(g->tab + i) + j)), "\33[00m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
+            }
         }
     }  
 }
@@ -48,7 +58,7 @@ void Grille_tirage_fruit(grille *g){
 
 
 void Grille_remplir( grille *g, serpent *s ){
-    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[00m  ";
+    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[41m  ";
     *(*(g->tab + (s->x)) + (s->y)) = s->l_serpent->premier->couleur;
 }
 
@@ -77,9 +87,7 @@ void Grille_desallouer(grille *g){
 void Grille_redessiner(grille *g){
     for ( int i = 0 ; i < g->n ; i++ ){
         for ( int j = 0 ; j < g->m ; j++ ){
-            if(j == 0 || i == 0 || j == g->m-1 || i == g->n-1) 
-                printf("\33[42m 2\33[00m");
-            else
+
                 printf("%s", *(*(g->tab + i) + j));
         }
         printf("\n");

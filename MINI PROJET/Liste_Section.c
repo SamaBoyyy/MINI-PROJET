@@ -8,8 +8,7 @@
 Section *nouvelle_Section (int taille) {
   Section *m = malloc(sizeof(Section));
   m->taille = taille;
-  m->couleur = malloc(sizeof(char));
-  m->couleur = NULL;
+  m->couleur = malloc(8*sizeof(char));
   m->suivant = NULL;
   return m;
 }

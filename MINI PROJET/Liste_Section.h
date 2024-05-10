@@ -1,5 +1,5 @@
-#ifndef _LISTE_INT_H
-#define _LISTE_INT_H
+#ifndef _LISTE_SECTION_H
+#define _LISTE_SECTION_H
 #define item int
 
 typedef struct section_s {
