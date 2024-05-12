@@ -40,7 +40,7 @@ void Grille_vider (grille *g ){
                 strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m==\33[00m");
             }
             else {
-            strcpy((*(*(g->tab + i) + j)), "\33[00m 1\33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
+            strcpy((*(*(g->tab + i) + j)), "\33[00m  \33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
             }
         }
     }  

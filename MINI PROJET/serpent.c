@@ -20,14 +20,14 @@ serpent * creer_serpent(){
     printf("3");
     int c = (rand() % 7) + 41; // de 41 à 47
     sprintf(s->l_serpent->premier->couleur , "\33[%dm S\33[00m", c);
-    printf("4\n");
+    printf("4");
     //arrangement liste
     
 
     s->l_serpent->premier->suivant = s->l_serpent->dernier;
     // s->l_serpent->dernier->suivant = NULL;  // !!! SEG FAULT CAR ESPACE NON ALLOUER !!!
     
-    printf("5");
+    printf("5\n");
     return s;
 }
 

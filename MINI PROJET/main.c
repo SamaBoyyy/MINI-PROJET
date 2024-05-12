@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ncurses.h>
 #include "grille.h"
 #include "serpent.h"
 #include "Liste_Section.h"
-#include <ncurses.h>
 
-int main(){
+
+int main(int argc, char **argv){
+    int L, C;
+    L = strtol(argv[1], NULL , 10);
+    C = strtol(argv[2], NULL , 10);
     printf("hello\n");
     serpent * s = creer_serpent();
     printf("%s\n",s->l_serpent->premier->couleur);
-    grille * g = Grille_allouer(20,20);
+    grille * g = Grille_allouer(L,C);
     if (g == NULL)
     {
         printf("\33[91mMEMOIRE INSUFISANTE\n");
