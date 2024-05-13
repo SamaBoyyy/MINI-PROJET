@@ -1,20 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ncurses.h>
 #include "grille.h"
 #include "serpent.h"
 #include "Liste_Section.h"
+#include <ncurses.h>
+//#include "Fonctions_Jeu.h"
 
+int main(int argc, char *argv[]){
 
-int main(int argc, char **argv){
-    int L, C;
-    L = strtol(argv[1], NULL , 10);
-    C = strtol(argv[2], NULL , 10);
+    /*if( argc != 5) {
+        printf("Usage : unsigned unsigned unsigned unsigned\n Coordonnee x | Coordonnee y | Delai desire | Quel Jeu ?\n");
+        return EXIT_FAILURE;
+    }
+    unsigned x, y, delai, jeu; // Dimensions de la grille
+    x     = strtoul( argv[1], NULL, 10);
+    y     = strtoul( argv[2], NULL, 10);
+    delai = strtoul( argv[3], NULL, 10);
+    jeu   = strtoul( argv[4], NULL, 10);
+*/
     printf("hello\n");
     serpent * s = creer_serpent();
     printf("%s\n",s->l_serpent->premier->couleur);
-    grille * g = Grille_allouer(L,C);
+    grille * g = Grille_allouer(20,20);
     if (g == NULL)
     {
         printf("\33[91mMEMOIRE INSUFISANTE\n");
@@ -32,6 +39,7 @@ int main(int argc, char **argv){
         if (s->l_serpent != NULL ) free(s->l_serpent);
         free(s);
     }*/
+    //jouer_jeu_serpent(  delai, g, s);
     printf("%d\n",s->x);
     serpent_desallouer(s);
     printf("%d\n",s->x);
