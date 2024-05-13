@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]){
 
-    /*if( argc != 5) {
+    if( argc != 5) {
         printf("Usage : unsigned unsigned unsigned unsigned\n Coordonnee x | Coordonnee y | Delai desire | Quel Jeu ?\n");
         return EXIT_FAILURE;
     }
@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
     y     = strtoul( argv[2], NULL, 10);
     delai = strtoul( argv[3], NULL, 10);
     jeu   = strtoul( argv[4], NULL, 10);
-*/
+
     printf("hello\n");
     serpent * s = creer_serpent();
     printf("%s\n",s->l_serpent->premier->couleur);
@@ -39,7 +39,13 @@ int main(int argc, char *argv[]){
         if (s->l_serpent != NULL ) free(s->l_serpent);
         free(s);
     }*/
-    //jouer_jeu_serpent(  delai, g, s);
+    switch(jeu) {  
+        case 1: 
+            jouer_jeu_serpent(delai, g, s);
+        default:
+            printf("Pas d'autre jeu pour l'instant; seulement le jeu <1> ");
+      }
+    
     printf("%d\n",s->x);
     serpent_desallouer(s);
     printf("%d\n",s->x);
