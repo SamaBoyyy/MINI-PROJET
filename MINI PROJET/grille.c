@@ -40,7 +40,7 @@ void Grille_vider (grille *g ){
                 strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m==\33[00m");
             }
             else {
-            strcpy((*(*(g->tab + i) + j)), "\33[00m  \33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
+                strcpy((*(*(g->tab + i) + j)), "\33[00m  \33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
             }
         }
     }  
@@ -58,8 +58,8 @@ void Grille_tirage_fruit(grille *g){
 
 
 void Grille_remplir( grille *g, serpent *s ){
-    *(*(g->tab + (g->fruit.x)) + (g->fruit.y)) = "\33[41m  ";
-    *(*(g->tab + (s->x)) + (s->y)) = s->l_serpent->premier->couleur;
+    strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)) , "\33[41m  ");
+    strcpy(*(*(g->tab + (s->x)) + (s->y)) , s->l_serpent->premier->couleur);
 }
 
 void Grille_desallouer(grille *g){
@@ -90,6 +90,6 @@ void Grille_redessiner(grille *g){
 
                 printf("%s", *(*(g->tab + i) + j));
         }
-        printf("\n");
+        printf("\33[1E");
     }
 }

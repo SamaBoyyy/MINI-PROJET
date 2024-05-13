@@ -14,8 +14,8 @@ serpent * creer_serpent(){
     s->l_serpent->premier = nouvelle_Section(1); //  IL FAUT INITIALISER LE MAILLON
 
     printf("2");
-    s->x = 5;  // ON NE PEUT FAIRE UN SRAND CAR LE CALCULE SE FAIT SI VITE QUE LE SERPENT ET AU MEME ENDROIT QU'AU FRUIT.
-    s->y = 5;
+    s->x = 2;  // ON NE PEUT FAIRE UN SRAND CAR LE CALCULE SE FAIT SI VITE QUE LE SERPENT ET AU MEME ENDROIT QU'AU FRUIT.
+    s->y = 2;
     //mettre couleur section
     printf("3");
     int c = (rand() % 7) + 41; // de 41 à 47

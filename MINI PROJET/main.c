@@ -4,24 +4,25 @@
 #include "serpent.h"
 #include "Liste_Section.h"
 #include <ncurses.h>
-//#include "Fonctions_Jeu.h"
+#include <string.h>
+#include "Fonctions_Jeu.h"
 
 int main(int argc, char *argv[]){
 
     if( argc != 5) {
-        printf("Usage : unsigned unsigned unsigned unsigned\n Coordonnee x | Coordonnee y | Delai desire | Quel Jeu ?\n");
+        printf("Usage : ./game unsigned unsigned unsigned unsigned\n ./game Longueur x | Largeueu y | vitesse du jeu | Nom du Jeu ?\n");
         return EXIT_FAILURE;
     }
-    unsigned x, y, delai, jeu; // Dimensions de la grille
+    unsigned x, y, delai; // Dimensions de la grille
     x     = strtoul( argv[1], NULL, 10);
     y     = strtoul( argv[2], NULL, 10);
     delai = strtoul( argv[3], NULL, 10);
-    jeu   = strtoul( argv[4], NULL, 10);
+    
 
-    printf("hello\n");
+    printf("x = %d y = %d\n", x,y);
     serpent * s = creer_serpent();
     printf("%s\n",s->l_serpent->premier->couleur);
-    grille * g = Grille_allouer(20,20);
+    grille * g = Grille_allouer(x,y);
     if (g == NULL)
     {
         printf("\33[91mMEMOIRE INSUFISANTE\n");
@@ -30,24 +31,25 @@ int main(int argc, char *argv[]){
     Grille_vider(g);
     Grille_tirage_fruit(g);
     Grille_remplir(g,s);
-    Grille_redessiner(g);
-    printf("%d\n",g->n);
-    Grille_desallouer(g);
-    printf("%d\n",g->n);
+    //#Grille_redessiner(g);
+    
     //detruire_liste_section(s->l_serpent);
     /*if( s !=  NULL){
         if (s->l_serpent != NULL ) free(s->l_serpent);
         free(s);
     }*/
-    switch(jeu) {  
-        case 1: 
+    if ((strcmp(argv[4],"serpent")== 0)|| (strcmp(argv[4],"Serpent")== 0)|| (strcmp(argv[4],"SERPENT")== 0))
+    {
+            
             jouer_jeu_serpent(delai, g, s);
-        default:
-            printf("Pas d'autre jeu pour l'instant; seulement le jeu <1> ");
-      }
-    
-    printf("%d\n",s->x);
+    }
+    else
+    {
+        printf("JEU NON TROUVE\nJEU DISPONIBLE : serpent \n");
+    }
+
+    Grille_desallouer(g);
     serpent_desallouer(s);
-    printf("%d\n",s->x);
+    
     return EXIT_SUCCESS;
 }

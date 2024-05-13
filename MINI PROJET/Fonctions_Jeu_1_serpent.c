@@ -3,11 +3,12 @@
 #include <ncurses.h>
 #include "grille.h"
 #include "serpent.h"
+#include "Fonctions_Jeu.h"
 
-int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
+void jouer_jeu_serpent( int delai, grille *g,  serpent *s){
     
   int ch, ch_dern;
-  int i=0,o;
+  int i=0;
 
   /* Initialisation de ncurses et du clavier(4 lignes)*/
   initscr();
@@ -16,7 +17,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
   noecho();
 
 
-  halfdelay(delai);  /* Temps d'exécution max de getch à 1/10eme de seconde */
+  halfdelay(1);  /* Temps d'exécution max de getch à 1/10eme de seconde */
 
   do{
   
@@ -38,54 +39,69 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
     
     /* A partir d'ici, les actions sont effectuees que l'utilisateur ait appuye ou non sur une touche) */
     
-    printf("\33[2J"); /* Efface tout l'ecran */
-    printf("\33[H");  /* Place le curseur en haut à gauche */
-    printf("Test: appuyez une touche (ou appuyez sur # pour Sortir)\n\33[1E");
+    printf("\33[2J");
+    printf("\33[H");
+ 
+   
 
-    switch(ch_dern) {  
-        case KEY_UP:   /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
-           printf("La derniere touche utilisee est: Up Arrow\33[1E");
-           i=0;
+   switch(ch_dern) {  
+      case KEY_UP:   /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
+         Grille_vider(g);
+         Grille_tirage_fruit(g);
+         Grille_remplir(g,s);
+         printf("\33[2J");
+         printf("\33[1E");         
+         Grille_redessiner(g);
+
+           /*i=0;
            if(s->x == g->n) {
                 printf("Vous avez perdu\n");
-                return EXIT_FAILURE;
+                exit(EXIT_FAILURE);
            } 
            s->x++;
            Grille_remplir(g,s);
-           Grille_redessiner(g);
-           break;
-        case KEY_DOWN: 
-           printf("La derniere touche utilisee est: Down Arrow\33[1E");
+           Grille_redessiner(g);*/
+         break;
+
+      case KEY_DOWN: 
+         printf("sx = %d ; sy = %d",s->x,s->y);
+         
+         printf("\33[1E");   
+           /*
            if(s->x == 0) {
                 printf("Vous avez perdu\n");
-                return EXIT_FAILURE;
+                exit(EXIT_FAILURE);
            } 
            s->x--;
            Grille_remplir(g,s);
-           Grille_redessiner(g);
+           Grille_redessiner(g);*/
            break;
         case KEY_LEFT: 
-           printf("La derniere touche utilisee est: Left Arrow\33[1E");
-           if(s->y == 0) {
+           
+
+           /*if(s->y == 0) {
                 printf("Vous avez perdu\n");
-                return EXIT_FAILURE;
+                exit(EXIT_FAILURE);
            } 
            s->y--;
            Grille_remplir(g,s);
-           Grille_redessiner(g);
+           Grille_redessiner(g);*/
            break; 
         case KEY_RIGHT: 
-           printf("La derniere touche utilisee est: Right Arrow\33[1E");
+           
+          /* 
            if(s->y == g->m) {
                 printf("Vous avez perdu\n");
-                return EXIT_FAILURE;
+                exit(EXIT_FAILURE);
            } 
            s->y++;
            Grille_remplir(g,s);
-           Grille_redessiner(g);
+           Grille_redessiner(g); */
            break;
+
         default:
-           printf("La derniere touche utilisee est: %c\33[1E",ch_dern);
+           Grille_redessiner(g);
+           //printf("\33[2J");
            break;
       }
       
