@@ -51,12 +51,20 @@ void Grille_tirage_fruit(grille *g, serpent * s){
 void Grille_remplir( grille *g, serpent *s ){
     strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)) , "\33[41m  ");
     Section *m;
+    int sy = s->y;
+    char buffer[18];
     for (m = s->l_serpent->premier; m != NULL; m = m->suivant) {
-        for( int i = 0 ; m->taille ; i++ ){
-            strcpy(*(*(g->tab + (s->x)) + (s->y-i)) , m->couleur);
+        for( int i = 0 ; i < m->taille ; i++ ){
+            sprintf( buffer ,"%s" ,m->couleur);
+            strcpy(*(*(g->tab + (s->x)) + (sy+i)), buffer);
         }
-  }
+        sy +=m->taille;
+    }
+    
 }
+
+
+
 
 void Grille_desallouer(grille *g){
     for ( int i = 0 ; i < g->n  ; i++ ){

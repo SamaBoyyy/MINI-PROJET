@@ -28,4 +28,6 @@ void Grille_desallouer( grille *g );
 void Grille_redessiner( grille *g);
 
 
+
+
 #endif 

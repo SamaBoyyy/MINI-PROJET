@@ -38,7 +38,7 @@ void afficher_liste_couleur(const liste_section *l);
 void ajouter_maillon_debut_liste_section(liste_section *l, Section *m);
 
 /* insertion d'un maillon d'adresse m à la fin de la liste d'adresse l */
-void ajouter_maillon_fin_liste_section(liste_section *l, Section *m);
+void ajouter_section_fin_liste_section(liste_section *l, Section *m);
 
 /* extraction du premier maillon de la liste d'adresse l */
 /* et renvoi de l'adresse du maillon extrait */

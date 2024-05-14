@@ -55,10 +55,12 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
          }
          else{
             Grille_vider(g);    
-            if (s->x == g->fruit.x && s->y == g->fruit.y)
+            if (s->x == g->fruit.x && s->y == g->fruit.y){
                Grille_tirage_fruit(g,s);
+               grandir_serpent(s);
+               
+            }
             
-            grandir_serpent(s);
             Grille_remplir(g,s);
             printf("\33[2J");
             printf("\33[1E");         
@@ -83,11 +85,12 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
          }
          else{
             Grille_vider(g);
-            if (s->x == g->fruit.x && s->y == g->fruit.y)
+            if (s->x == g->fruit.x && s->y == g->fruit.y){
                Grille_tirage_fruit(g,s);
-
-
-            grandir_serpent(s);
+               grandir_serpent(s);
+               
+            }
+            
             Grille_remplir(g,s);
             printf("\33[2J");
             printf("\33[1E");         
@@ -112,11 +115,13 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
          }
          else{
             Grille_vider(g);
-            if (s->x == g->fruit.x && s->y == g->fruit.y)
+            if (s->x == g->fruit.x && s->y == g->fruit.y){
                Grille_tirage_fruit(g,s);
+               grandir_serpent(s);
+               
+            }
 
-
-            grandir_serpent(s);
+            
             Grille_remplir(g,s);
             printf("\33[2J");
             printf("\33[1E");         
@@ -142,11 +147,14 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
          }
          else{
             Grille_vider(g);
-            if (s->x == g->fruit.x && s->y == g->fruit.y)
+            if (s->x == g->fruit.x && s->y == g->fruit.y){
                Grille_tirage_fruit(g,s);
+               grandir_serpent(s);
+            
+         }
 
 
-            grandir_serpent(s);
+         
             Grille_remplir(g,s);
             printf("\33[2J");
             printf("\33[1E");         
