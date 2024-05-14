@@ -19,7 +19,7 @@ grille * Grille_allouer( unsigned n, unsigned m);
 
 void Grille_vider( grille *g );
 
-void Grille_tirage_fruit( grille *g );
+void Grille_tirage_fruit( grille *g , serpent *s);
 
 void Grille_remplir( grille *g, serpent *s );
 

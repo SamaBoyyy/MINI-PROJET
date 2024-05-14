@@ -47,12 +47,12 @@ void Grille_vider (grille *g ){
 }
 
 
-void Grille_tirage_fruit(grille *g){
+void Grille_tirage_fruit(grille *g, serpent * s){
     srand(time(NULL));
     do{
         g->fruit.x=rand()%(g->n);
         g->fruit.y=rand()%(g->m);
-    } while (g->fruit.x == 0 || g->fruit.x == g->n-1 || g->fruit.y == 0 || g->fruit.y == g->m-1);
+    } while (g->fruit.x == 0 || g->fruit.x == g->n-1 || g->fruit.y == 0 || g->fruit.y == g->m-1 || g->fruit.x == s->x  || g->fruit.y == s->y);
     printf("g->fruit.x= %d || g->fruit.y= %d \n",g->fruit.x,g->fruit.y);
 }
 

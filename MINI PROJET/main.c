@@ -8,7 +8,7 @@
 #include "Fonctions_Jeu.h"
 
 int main(int argc, char *argv[]){
-
+    int win_value ;
     if( argc != 5) {
         printf("Usage : ./game unsigned unsigned unsigned unsigned\n ./game Longueur x | Largeueu y | vitesse du jeu | Nom du Jeu ?\n");
         return EXIT_FAILURE;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
         return EXIT_FAILURE;
     }
     Grille_vider(g);
-    Grille_tirage_fruit(g);
+    Grille_tirage_fruit(g,s);
     Grille_remplir(g,s);
     //#Grille_redessiner(g);
     
@@ -41,11 +41,15 @@ int main(int argc, char *argv[]){
     if ((strcmp(argv[4],"serpent")== 0)|| (strcmp(argv[4],"Serpent")== 0)|| (strcmp(argv[4],"SERPENT")== 0))
     {
             
-            jouer_jeu_serpent(delai, g, s);
+        win_value = jouer_jeu_serpent(delai, g, s);
     }
     else
     {
         printf("JEU NON TROUVE\nJEU DISPONIBLE : serpent \n");
+    }
+
+    if (win_value==1){
+        printf("YOU LOSE\n");   
     }
 
     Grille_desallouer(g);

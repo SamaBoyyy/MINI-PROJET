@@ -4,6 +4,6 @@
 #include "serpent.h"
 #include "grille.h"
 
-void jouer_jeu_serpent( int delai, grille *g,  serpent *s);
+int jouer_jeu_serpent( int delai, grille *g,  serpent *s);
 
 #endif
