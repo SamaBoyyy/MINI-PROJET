@@ -6,18 +6,17 @@
 
 
 serpent * creer_serpent(){
-    srand(time(NULL));
+
     //allouer
     serpent * s = malloc(sizeof(serpent));
     printf("1");
     s->l_serpent = nouvelle_liste_section();
     s->l_serpent->premier = nouvelle_Section(1); //  IL FAUT INITIALISER LE MAILLON
     s->l_serpent->dernier = nouvelle_Section(1);
-    s->x = 2;  // ON NE PEUT FAIRE UN SRAND CAR LE CALCULE SE FAIT SI VITE QUE LE SERPENT ET AU MEME ENDROIT QU'AU FRUIT.
+    s->x = 2;  // ON NE PEUT PAS FAIRE UN SRAND CAR LE CALCULE SE FAIT SI VITE QUE LE SERPENT ET AU MEME ENDROIT QU'AU FRUIT.
     s->y = 2;
     //mettre couleur section
-    int c = (rand() % 7) + 41; // de 41 à 47
-    sprintf(s->l_serpent->premier->couleur , "\33[%dm S\33[00m", c);
+    sprintf(s->l_serpent->premier->couleur , "\33[%dm S\33[00m", couleur_aleatoire());
     printf("4");
     
     return s;
@@ -34,6 +33,15 @@ void serpent_desallouer(serpent *s){
     }
 }
 
+int couleur_aleatoire(){
+    srand(time(NULL));
+    int c = (rand() % 7) + 41;  // de 41 à 47
+    return c;
+
+}
+
 void grandir_serpent(serpent * s){
+    int cpt = 1 ; 
+    
 
 }

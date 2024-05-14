@@ -10,5 +10,7 @@ typedef struct serpent_s{
 
 serpent * creer_serpent();
 void serpent_desallouer(serpent *s);
+int couleur_aleatoire();
+void grandir_serpent(serpent *s);
 
 #endif
