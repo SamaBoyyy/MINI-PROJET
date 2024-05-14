@@ -4,6 +4,7 @@
 #include "serpent.h"
 #include "Liste_Section.h"
 
+int CPT=1;
 
 serpent * creer_serpent(){
 
@@ -43,16 +44,16 @@ int couleur_aleatoire(){
 void grandir_serpent(serpent * s){
     srand(time(NULL));
     int t = rand()%5+1;
-    int cpt = 1;
-    if( cpt == 1 ){
+    if( CPT == 1 ){
         s->l_serpent->dernier = nouvelle_Section(t);
+        s->l_serpent->premier->suivant = s->l_serpent->dernier;
         sprintf(s->l_serpent->dernier->couleur , "\33[%dm S\33[00m", couleur_aleatoire());
     }
     else{
         Section * sn = nouvelle_Section(t);
         sprintf(sn->couleur , "\33[%dm S\33[00m", couleur_aleatoire());
-        ajouter_maillon_fin_liste_section(s->l_serpent , sn);
+        ajouter_section_fin_liste_section(s->l_serpent , sn);
     }
-    cpt++;
+    CPT++;
 }
 
