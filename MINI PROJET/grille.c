@@ -31,20 +31,11 @@ grille * Grille_allouer ( unsigned n, unsigned m ){
 void Grille_vider (grille *g ){
     for ( int i = 0 ; i < g->n  ; i++ ){
         for( int j = 0 ; j < g->m ; j++ ){
-            if(j == g->m-1 && (i >0 && i <g->n-1))  
-                strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m+#\33[00m");
-            else if (j == 0 && (i >0 && i <g->n-1) ){
-                strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m#+\33[00m");
-            }
-            else if (i == 0 || i == g->n-1 ){
-                strcpy((*(*(g->tab + i) + j)),"\x1b[2;42;97m==\33[00m");
-            }
-            else {
                 strcpy((*(*(g->tab + i) + j)), "\33[00m  \33[00m"); //met la valeur une couleur verte puis l'arrete avec une couleur noir
             }
         }
     }  
-}
+
 
 
 void Grille_tirage_fruit(grille *g, serpent * s){
@@ -52,7 +43,7 @@ void Grille_tirage_fruit(grille *g, serpent * s){
     do{
         g->fruit.x=rand()%(g->n);
         g->fruit.y=rand()%(g->m);
-    } while (g->fruit.x == 0 || g->fruit.x == g->n-1 || g->fruit.y == 0 || g->fruit.y == g->m-1 || g->fruit.x == s->x  || g->fruit.y == s->y);
+    } while (g->fruit.x == s->x  || g->fruit.y == s->y);
     printf("g->fruit.x= %d || g->fruit.y= %d \n",g->fruit.x,g->fruit.y);
 }
 
@@ -85,11 +76,25 @@ void Grille_desallouer(grille *g){
 //}
 
 void Grille_redessiner(grille *g){
+    for (int i = 0; i <= g->n+1; i++)
+    {
+        printf("\x1b[2;42;97m==\33[00m");
+    }
+    printf("\33[1E");
+
     for ( int i = 0 ; i < g->n ; i++ ){
+        printf("\x1b[2;42;97m#+\33[00m");
         for ( int j = 0 ; j < g->m ; j++ ){
 
                 printf("%s", *(*(g->tab + i) + j));
         }
+        printf("\x1b[2;42;97m+#\33[00m");
         printf("\33[1E");
     }
+
+    for (int i = 0; i <= g->n+1; i++)
+    {
+        printf("\x1b[2;42;97m==\33[00m");
+    }
+    printf("\33[1E");
 }

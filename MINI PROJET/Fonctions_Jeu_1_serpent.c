@@ -47,7 +47,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
    switch(ch_dern) {  
       case KEY_UP:   /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
          s->x --;
-         if(s->x == 0 || s->x == g->n-1 || s->y == 0 || s->y == g->m-1){
+         if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
             endwin();
             return 1;
 
@@ -78,7 +78,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
 
       case KEY_DOWN: 
          s->x ++;
-         if(s->x == 0 || s->x == g->n-1 || s->y == 0 || s->y == g->m-1){
+         if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
             endwin();
             return 1;
             
@@ -109,7 +109,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
         case KEY_LEFT: 
 
          s->y --;
-         if(s->x == 0 || s->x == g->n-1 || s->y == 0 || s->y == g->m-1){
+         if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
             endwin();
             return 1;
             
@@ -141,7 +141,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
         case KEY_RIGHT: 
             
            s->y++;
-           if(s->x == 0 || s->x == g->n-1 || s->y == 0 || s->y == g->m-1){
+           if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
             endwin();
             return 1;
             
