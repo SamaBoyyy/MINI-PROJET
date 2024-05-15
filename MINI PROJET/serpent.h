@@ -17,7 +17,6 @@ typedef enum direction {
 }direction;
 
 typedef struct mouvement_s {
-    direction * mouvement;
     coord * position;
     struct mouvement_s *suivant;
 }mouvement;
@@ -36,11 +35,19 @@ typedef struct serpent_s{
     direction dir ;  
 }serpent;
 
+
+
+
+
 serpent * creer_serpent();
 void serpent_desallouer(serpent *s);
 int couleur_aleatoire();
 void grandir_serpent(serpent * s);
+void ajouter_mouvement_fin_liste_mouvement(liste_mouvement *l, mouvement *m);
 mouvement * nouveau_mouvement();
+int est_vide_liste_mouvement(const liste_mouvement *l);
+void grandir_mouvement(liste_mouvement *l, int taille);
+
 
 #endif
 

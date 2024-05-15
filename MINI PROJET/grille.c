@@ -78,20 +78,45 @@ void Grille_remplir(grille *g, serpent *s)
 void Grille_remplir_bis(grille *g, serpent *s)
 {
     strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)), "\33[41m  ");
-    Section *m;
-    int sy = s->y;
-    // int sx = s->x;
 
+    mouvement *m_mv = s->l_mouvement->l_premier;
     char buffer[18];
-    for (m = s->l_serpent->premier; m != NULL; m = m->suivant)
+
+    int tmpx = s->x;
+    int tmpy = s->y;
+
+    for (Section *m = s->l_serpent->premier; m != NULL; m = m->suivant)
     {
-        for (int i = 0; i < m->taille; i++)
-        {
-            sprintf(buffer, "%s", m->couleur);
-            strcpy(*(*(g->tab + (s->x)) + (sy + i)), buffer);
-        }
-        sy += m->taille;
+        if (m_mv == NULL)
+            break;
+
+        m_mv->position->x = tmpx;
+        m_mv->position->y = tmpy;
+        tmpx = m_mv->position->x;
+        tmpy = m_mv->position->y;
+        sprintf(buffer, "%s", m->couleur);
+        strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+
+        m_mv = m_mv->suivant;
     }
+
+    /*
+    for (mouv = s->l_mouvement->l_premier; mouv != NULL; mouv = mouv->suivant)
+    {
+        mouv->position->y = s->y;
+        mouv->position->x = s->x;
+        if (sy != s->y || sx != s->x)
+        {
+            if (s->dir == Haut)
+            {
+
+                sprintf(buffer, "%s", m->couleur);
+                strcpy(*(*(g->tab + (mouv->position->x)) + (mouv->position->y)), buffer);
+
+            }
+        }
+    }
+    */
 }
 
 void Grille_desallouer(grille *g)
