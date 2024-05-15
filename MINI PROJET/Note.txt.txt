@@ -1,0 +1,44 @@
+Si ch_dern = KEY UP
+	s->l_mouvement->l_premier->direction->x = s->x 
+	s->l_mouvement->l_premier->direction->y = s->y
+	for (m = s->l_mouvement->l_premier tantque m->suivant != nul)
+		m->mouvement = HAUT
+		m->position->x--;
+		if(m->position->y < m->suivant->position->y)
+			m->suivant->position->y--
+		else
+			m->suivant->position->y++
+Si ch_dern = KEY DOWN
+	s->l_mouvement->l_premier->direction->x = s->x 
+	s->l_mouvement->l_premier->direction->y = s->y
+	for (m = s->l_mouvement->l_premier tantque m->suivant != nul)
+		m->mouvement = BAS
+		m->position->x++;
+		if(m->position->y < m->suivant->position->y)
+			m->suivant->position->y--
+		else
+			m->suivant->position->y++
+
+Si ch_dern = KEY RIGHT
+	s->l_mouvement->l_premier->direction->x = s->x 
+	s->l_mouvement->l_premier->direction->y = s->y
+	for (m = s->l_mouvement->l_premier tantque m->suivant != nul)
+		m->mouvement = DROITE
+		m->position->y++;
+		if(m->position->x < m->suivant->position->x)
+			m->suivant->position->x--
+		else
+			m->suivant->position->x++
+
+Si ch_dern = KEY LEFT
+	s->l_mouvement->l_premier->direction->x = s->x 
+	s->l_mouvement->l_premier->direction->y = s->y
+	for (m = s->l_mouvement->l_premier tantque m->suivant != nul)
+		m->mouvement = GAUCHE
+		m->position->y--;
+		if(m->position->y < m->suivant->position->y)
+			m->suivant->position->x--
+		else
+			m->suivant->position->x++
+
+	
