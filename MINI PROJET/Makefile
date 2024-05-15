@@ -7,20 +7,20 @@ PROG= programme
 all: $(OBJETS)
 	gcc $(CFLAGS) $(OBJETS) -o $(PROG) -lncurses ;rm $(OBJETS)
 
-grille.o: /C/grille.c /H/grille.h /H/serpent.h
-	gcc -c $(CFLAGS) /C/grille.c -lncurses
+grille.o: ./C/grille.c ./H/grille.h ./H/serpent.h
+	gcc -c $(CFLAGS) ./C/grille.c -lncurses
 
-Liste_Section.o: /C/Liste_Section.c /H/Liste_Section.h
-	gcc -c $(CFLAGS) /C/Liste_Section.c -lncurses
+Liste_Section.o: ./C/Liste_Section.c ./H/Liste_Section.h
+	gcc -c $(CFLAGS) ./C/Liste_Section.c -lncurses
 
-serpent.o: /C/serpent.c /H/serpent.h /H/Liste_Section.h 
-	gcc -c $(CFLAGS) /C/serpent.c -lncurses
+serpent.o: ./C/serpent.c ./H/serpent.h ./H/Liste_Section.h 
+	gcc -c $(CFLAGS) ./C/serpent.c -lncurses
 
-Fonctions_Jeu_1_serpent.o: /C/Fonctions_Jeu_1_serpent.c /H/Fonctions_Jeu.h /H/grille.h /H/serpent.h
-	gcc -c $(CFLAGS) /C/Fonctions_Jeu_1_serpent.c -lncurses
+Fonctions_Jeu_1_serpent.o: ./C/Fonctions_Jeu_1_serpent.c ./H/Fonctions_Jeu.h ./H/grille.h ./H/serpent.h
+	gcc -c $(CFLAGS) ./C/Fonctions_Jeu_1_serpent.c -lncurses
 
-main.o: main.c /H/grille.h /H/serpent.h /H/Liste_Section.h /H/Fonctions_Jeu.h
-	gcc -c $(CFLAGS) /C/main.c -lncurses
+main.o: ./C/main.c ./H/grille.h ./H/serpent.h ./H/Liste_Section.h ./H/Fonctions_Jeu.h
+	gcc -c $(CFLAGS) ./C/main.c -lncurses
 
 clean:
 	rm $(PROG)
