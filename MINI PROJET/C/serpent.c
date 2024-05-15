@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "serpent.h"
-#include "Liste_Section.h"
+#include "../H/serpent.h"
+#include "../H/Liste_Section.h"
 // #include "grille.h"
 
 int CPT = 1;

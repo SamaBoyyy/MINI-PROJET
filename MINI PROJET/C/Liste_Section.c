@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Liste_Section.h"
+#include "../H/Liste_Section.h"
 
 
 /* Alloue sur le tas de la mémoire pour un maillon de valeur v */

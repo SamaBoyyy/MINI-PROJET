@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "grille.h"
-#include "serpent.h"
-#include "Liste_Section.h"
+#include "../H/grille.h"
+#include "../H/serpent.h"
+#include "../H/Liste_Section.h"
 #include <ncurses.h>
 #include <string.h>
-#include "Fonctions_Jeu.h"
+#include "../H/Fonctions_Jeu.h"
 
 int main(int argc, char *argv[]){
     int win_value ;

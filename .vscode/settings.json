@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "fonctions_jeu.h": "c",
+        "liste_section.h": "c",
+        "serpent.h": "c",
+        "grille.h": "c"
+    }
+}
