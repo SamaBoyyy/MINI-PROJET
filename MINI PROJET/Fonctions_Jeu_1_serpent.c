@@ -38,10 +38,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
     }
     
     /* A partir d'ici, les actions sont effectuees que l'utilisateur ait appuye ou non sur une touche) */
-    
-    printf("\33[2J");
-    printf("\33[H");
- 
+     
    if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
             endwin();
             return 1;
@@ -57,7 +54,6 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
 
             
             Grille_remplir(g,s);
-            printf("\33[2J");
                      
             Grille_redessiner(g);
          }   
@@ -67,50 +63,17 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
    switch(ch_dern) {  
       case KEY_UP:   /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
          s->x --;
-        
-           /*i=0;
-           if(s->x == g->n) {
-                printf("Vous avez perdu\n");
-                exit(EXIT_FAILURE);
-           } 
-           s->x++;
-           Grille_remplir(g,s);
-           Grille_redessiner(g);*/
          break;
-
       case KEY_DOWN: 
          s->x ++;
-         
-           /*
-           if(s->x == 0) {
-                printf("Vous avez perdu\n");
-                exit(EXIT_FAILURE);
-           } 
-           s->x--;
-           Grille_remplir(g,s);
-           Grille_redessiner(g);*/
-           break;
-        case KEY_LEFT: 
-
+         break;
+      case KEY_LEFT:
          s->y --;
-         
-           
-
-           /*if(s->y == 0) {
-                printf("Vous avez perdu\n");
-                exit(EXIT_FAILURE);
-           } 
-           s->y--;
-           Grille_remplir(g,s);
-           Grille_redessiner(g);*/
-           break; 
-        case KEY_RIGHT: 
-            
-           s->y++;
-           
-           break;
-         default :
-            
+        break; 
+      case KEY_RIGHT: 
+         s->y++; 
+        break;
+      default :
             break;
 
       }
@@ -121,5 +84,5 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
 
     
   endwin(); /* Doit obligatoirement etre mis en fin de programme pour remettre le terminal en etat */
-
+   return 0;   
 }

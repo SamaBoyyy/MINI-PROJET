@@ -3,6 +3,7 @@
 #include <time.h>
 #include "serpent.h"
 #include "Liste_Section.h"
+//#include "grille.h"
 
 int CPT=1;
 
@@ -10,6 +11,10 @@ serpent * creer_serpent(){
 
     //allouer
     serpent * s = malloc(sizeof(serpent));
+    s->l_mouvement = malloc(sizeof(liste_mouvement));
+    s->l_mouvement->l_dernier = nouveau_mouvement();
+    s->l_mouvement->l_premier = nouveau_mouvement();
+    s->l_mouvement->l_premier->suivant = s->l_mouvement->l_dernier;
     printf("1");
     s->l_serpent = nouvelle_liste_section();
     s->l_serpent->premier = nouvelle_Section(1); //  IL FAUT INITIALISER LE MAILLON
@@ -57,3 +62,10 @@ void grandir_serpent(serpent * s){
     CPT++;
 }
 
+mouvement * nouveau_mouvement(){ // Initialise un maillon mouvement;
+    mouvement *m=malloc(sizeof(mouvement));
+    m->mouvement = 0;
+    m->position = NULL;
+    m->suivant = NULL;
+    return m;
+}

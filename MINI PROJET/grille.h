@@ -3,10 +3,6 @@
 
 #include "serpent.h"
 
-typedef struct coord_s {
-    unsigned x;
-    unsigned y;
-} coord;
 
 typedef struct grille_s {
     unsigned n;
@@ -28,6 +24,6 @@ void Grille_desallouer( grille *g );
 void Grille_redessiner( grille *g);
 
 
-
+void Grille_remplir_bis(grille * g ,serpent * s);
 
 #endif 
