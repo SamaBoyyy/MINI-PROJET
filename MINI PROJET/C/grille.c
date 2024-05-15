@@ -3,8 +3,8 @@
 #include <ncurses.h>
 #include <string.h>
 #include <time.h>
-#include "grille.h"
-#include "serpent.h"
+#include "../H/grille.h"
+#include "../H/serpent.h"
 
 grille *Grille_allouer(unsigned n, unsigned m)
 {
@@ -73,30 +73,34 @@ void Grille_remplir(grille *g, serpent *s)
         }
         sy += m->taille;
     }
+    Grille_remplir_bis(g,s);
 }
 
 void Grille_remplir_bis(grille *g, serpent *s)
 {
-    strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)), "\33[41m  ");
+    char bufferBis[50] = "\33[41m  ";
 
-    mouvement *m_mv = s->l_mouvement->l_premier;
-    char buffer[18];
+    strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)), bufferBis);
+
+    mouvement *m_mv =  nouveau_mouvement();
+    m_mv = s->l_mouvement->l_premier;
+    char buffer[50];
 
     int tmpx = s->x;
     int tmpy = s->y;
-
-    for (Section *m = s->l_serpent->premier; m != NULL; m = m->suivant)
+    Section *m = nouvelle_Section(1);
+    m= s->l_serpent->premier;
+    for ( int i = 0; i < s->l_serpent->longueur ; i++)
     {
         if (m_mv == NULL)
             break;
-
-        m_mv->position->x = tmpx;
-        m_mv->position->y = tmpy;
-        tmpx = m_mv->position->x;
-        tmpy = m_mv->position->y;
-        sprintf(buffer, "%s", m->couleur);
-        strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
-
+        else {
+            sprintf(buffer, "%s", m->couleur);
+            *(*(g->tab + m_mv->position->x) + m_mv->position->y) = malloc(8 * sizeof(char));
+            strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+        }
+        
+        m = m->suivant;
         m_mv = m_mv->suivant;
     }
 
