@@ -42,30 +42,32 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
     printf("\33[2J");
     printf("\33[H");
  
-   
-
-   switch(ch_dern) {  
-      case KEY_UP:   /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
-         s->x --;
-         if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
+   if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
             endwin();
             return 1;
-
             
          }
          else{
-            Grille_vider(g);    
+            Grille_vider(g);
             if (s->x == g->fruit.x && s->y == g->fruit.y){
                Grille_tirage_fruit(g,s);
                grandir_serpent(s);
                
             }
+
             
             Grille_remplir(g,s);
             printf("\33[2J");
-            printf("\33[1E");         
+                     
             Grille_redessiner(g);
-         }
+         }   
+
+
+
+   switch(ch_dern) {  
+      case KEY_UP:   /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
+         s->x --;
+        
            /*i=0;
            if(s->x == g->n) {
                 printf("Vous avez perdu\n");
@@ -78,24 +80,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
 
       case KEY_DOWN: 
          s->x ++;
-         if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
-            endwin();
-            return 1;
-            
-         }
-         else{
-            Grille_vider(g);
-            if (s->x == g->fruit.x && s->y == g->fruit.y){
-               Grille_tirage_fruit(g,s);
-               grandir_serpent(s);
-               
-            }
-            
-            Grille_remplir(g,s);
-            printf("\33[2J");
-            printf("\33[1E");         
-            Grille_redessiner(g);
-         }
+         
            /*
            if(s->x == 0) {
                 printf("Vous avez perdu\n");
@@ -108,25 +93,7 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
         case KEY_LEFT: 
 
          s->y --;
-         if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
-            endwin();
-            return 1;
-            
-         }
-         else{
-            Grille_vider(g);
-            if (s->x == g->fruit.x && s->y == g->fruit.y){
-               Grille_tirage_fruit(g,s);
-               grandir_serpent(s);
-               
-            }
-
-            
-            Grille_remplir(g,s);
-            printf("\33[2J");
-            printf("\33[1E");         
-            Grille_redessiner(g);
-         }
+         
            
 
            /*if(s->y == 0) {
@@ -140,30 +107,10 @@ int jouer_jeu_serpent( int delai, grille *g,  serpent *s){
         case KEY_RIGHT: 
             
            s->y++;
-           if(s->x < 0 || s->x > g->n-1 || s->y < 0 || s->y > g->m-1){
-            endwin();
-            return 1;
-            
-         }
-         else{
-            Grille_vider(g);
-            if (s->x == g->fruit.x && s->y == g->fruit.y){
-               Grille_tirage_fruit(g,s);
-               grandir_serpent(s);
-            
-         }
-
-
-         
-            Grille_remplir(g,s);
-            printf("\33[2J");
-            printf("\33[1E");         
-            Grille_redessiner(g);
-         }
-         
+           
            break;
          default :
-            Grille_redessiner(g);
+            
             break;
 
       }
