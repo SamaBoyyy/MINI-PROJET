@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ncurses.h>
-#include "grille.h"
-#include "serpent.h"
-#include "Fonctions_Jeu.h"
+#include "../H/grille.h"
+#include "../H/serpent.h"
+#include "../H/Fonctions_Jeu.h"
 
 int jouer_jeu_serpent(int delai, grille *g, serpent *s)
 {
@@ -55,7 +55,7 @@ int jouer_jeu_serpent(int delai, grille *g, serpent *s)
             grandir_serpent(s);
          }
 
-         Grille_remplir_bis(g, s);
+         Grille_remplir(g, s);
 
          Grille_redessiner(g);
       }
