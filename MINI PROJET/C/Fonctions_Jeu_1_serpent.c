@@ -55,7 +55,7 @@ int jouer_jeu_serpent(int delai, grille *g, serpent *s)
             grandir_serpent(s);
          }
 
-         Grille_remplir_bis(g, s);
+         Grille_remplir(g, s);
 
          Grille_redessiner(g);
       }

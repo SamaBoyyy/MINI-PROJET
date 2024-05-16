@@ -241,5 +241,4 @@ void Grille_redessiner(grille *g)
 
 void vider_case(grille  * g , int x , int y){
     strcpy((*(*(g->tab + x) + y)), "\33[00m  \33[00m");
-
 }
