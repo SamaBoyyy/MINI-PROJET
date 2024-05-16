@@ -16,15 +16,14 @@ serpent *creer_serpent()
     s->l_mouvement->l_dernier = nouveau_mouvement();
     s->l_mouvement->l_premier = nouveau_mouvement();
     s->l_mouvement->l_premier->suivant = s->l_mouvement->l_dernier;
-    printf("1");
     s->l_serpent = nouvelle_liste_section();
     s->l_serpent->premier = nouvelle_Section(1); //  IL FAUT INITIALISER LE MAILLON
-
+    s->l_serpent->longueur = 1;
     s->x = 2; // ON NE PEUT PAS FAIRE UN SRAND CAR LE CALCULE SE FAIT SI VITE QUE LE SERPENT ET AU MEME ENDROIT QU'AU FRUIT.
     s->y = 2;
     // mettre couleur section
     sprintf(s->l_serpent->premier->couleur, "\33[%dm S\33[00m", couleur_aleatoire());
-    printf("4");
+    
 
     return s;
 }
@@ -56,13 +55,13 @@ void grandir_serpent(serpent *s)
     {
         s->l_serpent->dernier = nouvelle_Section(t);
         s->l_serpent->premier->suivant = s->l_serpent->dernier;
-        sprintf(s->l_serpent->dernier->couleur, "\33[%dm S\33[00m", couleur_aleatoire());
+        sprintf(s->l_serpent->dernier->couleur, "\33[%dmlo\33[00m", couleur_aleatoire());
         grandir_mouvement(s->l_mouvement,t);
     }
     else
     {
         Section *sn = nouvelle_Section(t);
-        sprintf(sn->couleur, "\33[%dm S\33[00m", couleur_aleatoire());
+        sprintf(sn->couleur, "\33[%dmlo\33[00m", couleur_aleatoire());
         ajouter_section_fin_liste_section(s->l_serpent, sn);
         grandir_mouvement(s->l_mouvement,t);
     }
@@ -97,7 +96,7 @@ void grandir_mouvement(liste_mouvement *l, int taille)
     mouvement *nouveau_mouvement()
     { // Initialise un maillon mouvement;
         mouvement *m = malloc(sizeof(mouvement));
-        m->position = NULL;
+        m->position = malloc(sizeof(coord));
         m->suivant = NULL;
         return m;
     }
@@ -106,3 +105,34 @@ void grandir_mouvement(liste_mouvement *l, int taille)
     {
         return (l->l_premier == NULL);
     }
+
+void haut(mouvement *m_mv, int tmpx,int tmpy){
+    m_mv->position->x = tmpx + 1 ;
+    m_mv->position->y = tmpy;
+    
+                
+
+}
+
+void bas(mouvement *m_mv, int tmpx, int tmpy)
+{
+    m_mv->position->x = tmpx;
+    m_mv->position->y = tmpy - 1;
+    tmpx = m_mv->position->x;
+    tmpy = m_mv->position->y;
+}
+
+void droite(mouvement *m_mv, int tmpx, int tmpy)
+{
+    m_mv->position->x = tmpx;
+    m_mv->position->y = tmpy - 1;
+    
+}
+
+void gauche(mouvement *m_mv, int tmpx, int tmpy)
+{
+    m_mv->position->x = tmpx;
+    m_mv->position->y = tmpy + 1;
+    tmpx = m_mv->position->x;
+    tmpy = m_mv->position->y;
+}

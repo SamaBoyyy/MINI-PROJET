@@ -55,7 +55,7 @@ int jouer_jeu_serpent(int delai, grille *g, serpent *s)
             grandir_serpent(s);
          }
 
-         Grille_remplir(g, s);
+         Grille_remplir_bis(g, s);
 
          Grille_redessiner(g);
       }
@@ -65,18 +65,22 @@ int jouer_jeu_serpent(int delai, grille *g, serpent *s)
       case KEY_UP: /* Ces constantes sont dans ncurses pour correspondre aux codes de touches */
          s->x--;
          s->dir = Haut;
+         Grille_remplir_bis(g, s);
          break;
       case KEY_DOWN:
          s->x++;
-         s->dir = bas;
+         s->dir = Bas;
+         Grille_remplir_bis(g, s);
          break;
       case KEY_LEFT:
          s->y--;
          s->dir = Gauche;
+         Grille_remplir_bis(g, s);
          break;
       case KEY_RIGHT:
          s->y++;
          s->dir = Droite;
+         Grille_remplir_bis(g, s);
          break;
       default:
          break;

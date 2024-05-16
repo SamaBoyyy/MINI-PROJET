@@ -6,6 +6,9 @@
 #include "../H/grille.h"
 #include "../H/serpent.h"
 
+
+int TMPDIR = -1;
+
 grille *Grille_allouer(unsigned n, unsigned m)
 {
     int i;
@@ -73,36 +76,94 @@ void Grille_remplir(grille *g, serpent *s)
         }
         sy += m->taille;
     }
-    Grille_remplir_bis(g,s);
 }
 
 void Grille_remplir_bis(grille *g, serpent *s)
 {
-    char bufferBis[50] = "\33[41m  ";
 
-    strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)), bufferBis);
-
-    mouvement *m_mv =  nouveau_mouvement();
+    strcpy(*(*(g->tab + (g->fruit.x)) + (g->fruit.y)), "\33[41m  ");
+    mouvement *m_mv ;
     m_mv = s->l_mouvement->l_premier;
     char buffer[50];
 
     int tmpx = s->x;
     int tmpy = s->y;
-    Section *m = nouvelle_Section(1);
-    m= s->l_serpent->premier;
-    for ( int i = 0; i < s->l_serpent->longueur ; i++)
+    Section *m;
+    m = s->l_serpent->premier;
+    for (item i = 0; i < m->taille; i++)
     {
-        if (m_mv == NULL)
-            break;
-        else {
-            sprintf(buffer, "%s", m->couleur);
-            *(*(g->tab + m_mv->position->x) + m_mv->position->y) = malloc(8 * sizeof(char));
-            strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
-        }
         
-        m = m->suivant;
-        m_mv = m_mv->suivant;
+        if (m_mv == NULL || m == NULL)
+        {
+            break;
+        }
+        else
+        {
+            if (s->l_serpent->longueur == 1 || m == s->l_serpent->premier)
+            {
+                sprintf(buffer, "%s", m->couleur);
+                strcpy(*(*(g->tab + (s->x)) + (s->y)), buffer);
+        
+            
+            }
+            else
+            {
+
+                if (s->dir == Haut)
+                {
+                    droite(m_mv, tmpx, tmpy);
+                    sprintf(buffer, "%s", m->couleur);
+                    strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+                    tmpx = m_mv->position->x;
+                    tmpy = m_mv->position->y;
+                    vider_case(g, m_mv->position->x, m_mv->position->y);
+                    haut(m_mv, tmpx, tmpy);
+                    tmpx = m_mv->position->x;
+                    tmpy = m_mv->position->y;
+                    sprintf(buffer, "%s", m->couleur);
+                    strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+                    printf("s = %d  mv = %d", s->x, m_mv->position->x);
+                    
+                }
+                else if (s->dir == Bas)
+                {
+                    m_mv->position->x = tmpx - 1;
+                    m_mv->position->y = tmpy;
+                    tmpx = m_mv->position->x;
+                    tmpy = m_mv->position->y;
+                    sprintf(buffer, "%s", m->couleur);
+                    strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+                }
+
+                else if (s->dir == Gauche)
+                {
+                    m_mv->position->x = tmpx;
+                    m_mv->position->y = tmpy + 1;
+                    tmpx = m_mv->position->x;
+                    tmpy = m_mv->position->y;
+                    sprintf(buffer, "%s", m->couleur);
+                    strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+                }
+                else if (s->dir == Droite)
+                {
+                    m_mv->position->x = tmpx;
+                    m_mv->position->y = tmpy - 1;
+                    tmpx = m_mv->position->x;
+                    tmpy = m_mv->position->y;
+                    sprintf(buffer, "%s", m->couleur);
+                    strcpy(*(*(g->tab + (m_mv->position->x)) + (m_mv->position->y)), buffer);
+                }
+                
+                tmpx = m_mv->position->x;
+                tmpy = m_mv->position->y;
+                TMPDIR = s->dir;
+
+                m_mv = m_mv->suivant;
+            }
+        }
     }
+
+    m = m->suivant;
 
     /*
     for (mouv = s->l_mouvement->l_premier; mouv != NULL; mouv = mouv->suivant)
@@ -122,6 +183,7 @@ void Grille_remplir_bis(grille *g, serpent *s)
     }
     */
 }
+
 
 void Grille_desallouer(grille *g)
 {
@@ -175,4 +237,9 @@ void Grille_redessiner(grille *g)
         printf("\x1b[2;42;97m==\33[00m");
     }
     printf("\33[1E");
+}
+
+void vider_case(grille  * g , int x , int y){
+    strcpy((*(*(g->tab + x) + y)), "\33[00m  \33[00m");
+
 }

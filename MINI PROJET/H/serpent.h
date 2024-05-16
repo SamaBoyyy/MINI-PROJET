@@ -11,7 +11,7 @@ typedef struct coord_s {
 
 typedef enum direction {
     Haut,
-    bas,
+    Bas,
     Droite,
     Gauche
 }direction;
@@ -47,6 +47,10 @@ void ajouter_mouvement_fin_liste_mouvement(liste_mouvement *l, mouvement *m);
 mouvement * nouveau_mouvement();
 int est_vide_liste_mouvement(const liste_mouvement *l);
 void grandir_mouvement(liste_mouvement *l, int taille);
+void haut(mouvement *m_mv, int tmpx,int tmpy);
+void bas(mouvement *m_mv, int tmpx,int tmpy);
+void droite(mouvement *m_mv, int tmpx,int tmpy);
+void gauche(mouvement *m_mv, int tmpx,int tmpy);
 
 
 #endif

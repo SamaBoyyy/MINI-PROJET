@@ -23,7 +23,8 @@ void Grille_desallouer( grille *g );
 
 void Grille_redessiner( grille *g);
 
-
 void Grille_remplir_bis(grille * g ,serpent * s);
+
+void vider_case(grille  * g , int x , int y);
 
 #endif 
